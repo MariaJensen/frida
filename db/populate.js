@@ -121,8 +121,9 @@ content.forEach( (value, index, array) => {
 		console.log(`Duplicate (foodId, compId) at line ${index + 1} in file content.csv`);
 		return;
 	}
-
-	foodCompContent.get(foodId).set(compId, cont);
+	if (cont) {
+		foodCompContent.get(foodId).set(compId, cont);
+	}
 });
 
 // ---- Creating doc and sending it to the db: ----
@@ -152,17 +153,17 @@ console.log(Buffer.byteLength(JSON.stringify({
 (async () => {
 	try{
 
-		// const deleteDb = await cloudant.deleteDb('frida');
+		const deleteDb = await cloudant.deleteDb('frida');
 
-		// console.log('deleteDb: ', deleteDb);
+		console.log('deleteDb: ', deleteDb);
 		
-		// const createDb = await cloudant.createDb('frida');
+		const createDb = await cloudant.createDb('frida');
 
-		// console.log('createDb: ', createDb);
+		console.log('createDb: ', createDb);
 
-		// if (!createDb.ok) {
-		// 	return;
-		// }
+		if (!createDb.ok) {
+			return;
+		}
 
 		////////
 
